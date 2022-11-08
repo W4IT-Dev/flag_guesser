@@ -5,53 +5,53 @@ body {
     overflow: hidden;
 }
 
-/* div {
-    
-} */
-/* #softKeys {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: auto;
-    background-color: rgb(225, 225, 225);
-    color: rgb(30, 30, 30);
-    font-size: 16px;
-    font-family: Arial
-}
-
-#softKeys div {
-    margin: 1px;
-}
-
-#softMiddle {
-    font-size: 18px;
-    font-weight: 600;
-} */
-
 button {
     height: auto;
     width: 150px;
-    background-color: rgb(220, 220, 220);
+    background-color: rgba(0, 200, 0, 0.4);
     font-size: 18px;
-    margin: 10px;
+    margin: 5px;
 }
 
 button:focus {
-    background: rgb(185, 185, 185);
+    background: rgb(0, 180, 0);
+    box-shadow: 0 0 4px 1.5px #090;
+    height: 32px;
+    width: 154;
 }
 
 .answer-select-button {
-    height: 40px;
-    width: 100px;
+    height: auto;
+    width: 200px;
     margin: 5px;
+    font-size: 16px;
+}
+
+.answer-select-button:focus {
+    height: 29px;
+    width: 204px;
+}
+
+#startScreen,
+#game {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#startScreen img {
+    margin: 15px 0 -25px 0;
+}
+
+#startScreen h1 {
+    margin-bottom: 5px;
 }
 
 #game {
     display: none;
+    padding: 15px;
 }
 
 #header {
@@ -61,10 +61,10 @@ button:focus {
     top: 0px;
     left: 0px;
     right: 0px;
-    height: 40px;
-    box-shadow: 3px 0px 5px #000;
-    background-color: rgb(200, 200, 200);
-
+    height: 45px;
+    box-shadow: -1px 5px 9px 3px rgba(0, 85, 0, 0.82);
+    background-color: rgb(0, 80, 10);
+    font-weight: bold;
 }
 
 #gounder {
@@ -83,8 +83,8 @@ button:focus {
 }
 
 #flag {
-    height: 120px;
-    width: 180px;
+    height: 105px;
+    width: 162px;
 }
 
 #answers {

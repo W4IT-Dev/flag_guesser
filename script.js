@@ -21,123 +21,119 @@ let flags = [
     },
     {
         flag: '/img/flag/andorra.png',
-        name: 'Afghanistan'
+        name: 'andorra'
     },
     {
         flag: '/img/flag/angola.png',
-        name: 'Afghanistan'
+        name: 'angola'
     },
     {
         flag: '/img/flag/antigua-and-bardbudas.png',
-        name: 'Afghanistan'
+        name: 'antigua and bardbudas'
     },
     {
         flag: '/img/flag/argentina.png',
-        name: 'Afghanistan'
+        name: 'argentina'
     },
     {
         flag: '/img/flag/armenia.png',
-        name: 'Afghanistan'
+        name: 'armenia'
     },
     {
         flag: '/img/flag/australia.png',
-        name: 'Afghanistan'
+        name: 'australia'
     },
     {
         flag: '/img/flag/austria.png',
-        name: 'Afghanistan'
+        name: 'austria'
     },
     {
         flag: '/img/flag/azerbaijan.png',
-        name: 'Afghanistan'
+        name: 'azerbaijan'
     },
     {
         flag: '/img/flag/bahamas.png',
-        name: 'Afghanistan'
+        name: 'bahamas'
     },
     {
         flag: '/img/flag/bahrain.png',
-        name: 'Afghanistan'
+        name: 'bahrain'
     },
     {
         flag: '/img/flag/bangladesh.png',
-        name: 'Afghanistan'
+        name: 'bangladesh'
     },
     {
         flag: '/img/flag/barbados.png',
-        name: 'Afghanistan'
+        name: 'barbados'
     },
     {
         flag: '/img/flag/bazil.png',
-        name: 'Afghanistan'
+        name: 'bazil'
     },
     {
         flag: '/img/flag/belarus.png',
-        name: 'Afghanistan'
+        name: 'belarus'
     },
     {
         flag: '/img/flag/belgium.png',
-        name: 'Afghanistan'
+        name: 'belgium'
     },
     {
         flag: '/img/flag/belize.png',
-        name: 'Afghanistan'
+        name: 'belize'
     },
     {
         flag: '/img/flag/benin.png',
-        name: 'Afghanistan'
+        name: 'benin'
     },
     {
         flag: '/img/flag/bhutan.png',
-        name: 'Afghanistan'
+        name: 'bhutan'
     },
     {
         flag: '/img/flag/bolivia.png',
-        name: 'Afghanistan'
+        name: 'bolivia'
     },
     {
         flag: '/img/flag/bosnia-and-herzegovina.png',
-        name: 'Afghanistan'
+        name: 'bosnia and herzegovina'
     },
     {
         flag: '/img/flag/botswana.png',
-        name: 'Afghanistan'
+        name: 'botswana'
     },
     {
         flag: '/img/flag/brunei.png',
-        name: 'Afghanistan'
+        name: 'brunei'
     },
     {
         flag: '/img/flag/bulgaria.png',
-        name: 'Afghanistan'
+        name: 'bulgaria'
     },
     {
         flag: '/img/flag/burundi.png',
-        name: 'Afghanistan'
+        name: 'burundi'
     },
     {
         flag: '/img/flag/Cabo-verde.png',
-        name: 'Afghanistan'
+        name: 'cabo verde'
     },
     {
         flag: '/img/flag/cambodia.png',
-        name: 'Afghanistan'
+        name: 'cambodia'
     },
     {
         flag: '/img/flag/cameroon.png',
-        name: 'Afghanistan'
+        name: 'cameroon'
     }//30
-];
-
-let countries = [
-    "afganistan",
-
 ];
 
 startBtn.focus();
 
 
 //Event Listener
+//Key Events
 document.addEventListener('keydown', e => {
     if (e.key.includes('Arrow')) {
         e.preventDefault();
@@ -148,8 +144,20 @@ document.addEventListener('keydown', e => {
     if (e.key == 'ArrowUp') {
         nav(-1, '.' + document.activeElement.className);
     }
+    if (game.style.display == 'block') {
+        if (e.key == 'Backspace') {
+            e.preventDefault();
+            let quit = confirm("Are you sure to quit this session?\nYour progress won't be saved!");
+            if(quit) {
+                game.style.display = 'none';
+                startScreen.style.display = 'block';
+            }
+        }
+    }
 });
 
+
+//Button Events
 startBtn.addEventListener('click', () => {
     start();
 });
@@ -159,18 +167,22 @@ helpBtn.addEventListener('click', () => {
 
 //Functions
 function start() {
-    document.querySelector("meta[name='theme-color']").setAttribute("content", "rgb(200,200,200)");
     startScreen.style.display = 'none';
     game.style.display = 'block';
     document.querySelector('.answer-select-button').focus();
     random = parseInt(Math.random() * 31);
-    console.log(flags[random].flag)
     document.getElementById('flag').src = flags[random].flag;
+    let answer = parseInt(Math.random() * 4);
+    document.querySelectorAll('.answer-select-button')[answer].innerText = flags[random].name.charAt(0).toUpperCase() + flags[random].name.slice(1);;
+    let given = [
+        document.querySelectorAll('.answer-select-button')[answer]
+    ];
 }
 
 function help() {
     //nothing
 }
+
 
 function nav(move, elems) {
     const currentIndex = document.activeElement.tabIndex;
@@ -181,3 +193,18 @@ function nav(move, elems) {
     if (move === -1 && currentIndex == 0) return items[items.length - 1].focus();
     targetElement.focus();
 }
+
+
+
+//SOFTKEY FOR PC THING
+function softkey(e) {
+    const { target, key, bubbles, cancelable, repeat, type } = e;
+    if (!/Left|Right/.test(key) || !key.startsWith("Arrow") || !e.ctrlKey) return;
+    e.stopImmediatePropagation();
+    e.stopPropagation();
+    e.preventDefault();
+    target.dispatchEvent(new KeyboardEvent(type, { key: "Soft" + key.slice(5), bubbles, cancelable, repeat }));
+}
+
+document.addEventListener("keyup", softkey, true);
+document.addEventListener("keydown", softkey, true);
