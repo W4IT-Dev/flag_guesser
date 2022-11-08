@@ -1,0 +1,27 @@
+{
+   "version":"1.0.0",
+   "name":"Flag Guesser",
+   "description":"A fun game to test your eography skills!",
+   "type":"web",
+   "launch_path":"/index.html",
+   "icons":{
+      "56":"/img/icons/icon.png",
+      "128":"/img/icons/icon.png"
+   },
+   "developer":{
+      "name":"W4IT Dev",
+      "url":" https://www.kaiostech.com/"
+   },
+   "locales":{
+      "en-US":{
+         "name":"Flag Guesser",
+         "subtitle":"A fun game to test your eography skills!",
+         "description":"Guess the contrie by it's flag."
+      }
+   },
+   "default_locale":"en-US",
+   "categories":[
+      "games",
+      "education"
+   ]
+}
